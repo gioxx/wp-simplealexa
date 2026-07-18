@@ -3,7 +3,7 @@
  * Plugin Name:       Simple Alexa News Briefing
  * Plugin URI:        https://github.com/gioxx/wp-simplealexa
  * Description:       A modern, simple REST API–based WordPress plugin for Alexa flash briefing skills. Based on the original source code by Francesco Napoletano.
- * Version:           1.2.2
+ * Version:           1.2.3
  * Author:            Gioxx
  * Author URI:        https://gioxx.org
  * License:           MIT
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin version.
-define( 'SIMPLEALEXA_VERSION', '1.2.2' );
+define( 'SIMPLEALEXA_VERSION', '1.2.3' );
 
 // Default number of items.
 define( 'SIMPLEALEXA_DEFAULT_COUNT', 5 );

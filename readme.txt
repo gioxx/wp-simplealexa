@@ -5,7 +5,7 @@ Tags: alexa, flash-briefing, rest-api, news, briefing
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -42,6 +42,17 @@ You can use the setting in Dashboard **Settings → Alexa Briefing** or pass `?c
 1. Plugin settings in the Dashboard.
 
 == Changelog ==
+= 1.2.3 =
+* Main plugin file renamed from `index.php` to `wp-simplealexa.php`.
+* Added `README.md` / `README.it.md` for GitHub, a `CHANGELOG.md`, a GitHub Actions release workflow (auto zip + GitHub release on version bump), and Dependabot config.
+
+= 1.2.2 =
+* Reverted the pretty-permalink rewrite rule added in 1.2.1.
+* `GitHub Plugin URI` header changed to the `owner/repo` shorthand form.
+
+= 1.2.1 =
+* Added a pretty-permalink rewrite rule for the REST endpoint (`/simplealexa`).
+
 = 1.2.0 =
 * Added textdomain loading function.
 * Detailed readme.txt.
