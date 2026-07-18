@@ -3,9 +3,9 @@ Contributors: gioxx
 GitHub Plugin URI: https://github.com/gioxx/wp-simplealexa
 Tags: alexa, flash-briefing, rest-api, news, briefing
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -42,6 +42,9 @@ You can use the setting in Dashboard **Settings → Alexa Briefing** or pass `?c
 1. Plugin settings in the Dashboard.
 
 == Changelog ==
+= 1.2.4 =
+* Addressed WordPress Plugin Check findings ahead of directory submission: removed the deprecated `load_plugin_textdomain()` call, updated the "Tested up to" header, and excluded `.gitattributes`/`README.it.md` from the release zip.
+
 = 1.2.3 =
 * Main plugin file renamed from `index.php` to `wp-simplealexa.php`.
 * Added `README.md` / `README.it.md` for GitHub, a `CHANGELOG.md`, a GitHub Actions release workflow (auto zip + GitHub release on version bump), and Dependabot config.

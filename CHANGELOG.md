@@ -2,6 +2,10 @@
 
 All notable changes to this plugin are documented in this file.
 
+## [1.2.4] - 2026-07-18
+
+- Addressed WordPress Plugin Check findings ahead of directory submission: removed the deprecated `load_plugin_textdomain()` call (WordPress auto-loads translations for hosted plugins since 4.6), updated the readme "Tested up to" header to 7.0, and excluded `.gitattributes` and `README.it.md` from the release zip built by the GitHub Actions workflow.
+
 ## [1.2.3] - 2026-07-18
 
 - Renamed the main plugin file from `index.php` to `wp-simplealexa.php`.
