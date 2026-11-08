@@ -2,6 +2,12 @@
 
 All notable changes to this plugin are documented in this file.
 
+## [Unreleased]
+
+### Added
+- Admin: a two-card footer on the settings page — the plugin (icon, version, links, "View on GitHub") next to an invitation to the author's plugin gallery at wordpress.gioxx.org, with the trademark notice below. Styles in `assets/admin.css`, loaded on the settings page only; the icon (Lucide, ISC) and the gallery logo (a W drawn from the Bungee typeface, SIL OFL 1.1) are bundled in `assets/images/`, so nothing is loaded from other sites.
+- Plugins screen: "View on GitHub" (when the row does not already link to the repository) and "More plugins by Gioxx" links under the plugin description.
+
 ## [1.2.5] - 2026-07-19
 
 - Added the `Release Asset: true` plugin header so Git Updater installs the zip attached to the GitHub Release instead of the raw `main` branch zip.

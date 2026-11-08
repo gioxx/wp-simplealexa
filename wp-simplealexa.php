@@ -154,9 +154,90 @@ function simplealexa_settings_page() {
             submit_button();
             ?>
         </form>
+<div class="simplealexa-footer">
+            <div class="simplealexa-footer__cards">
+                <div class="simplealexa-footer__card simplealexa-footer__card--plugin">
+                    <span class="simplealexa-footer__badge"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . 'assets/images/plugin-icon.svg' ); ?>" width="20" height="20" alt=""></span>
+                    <div class="simplealexa-footer__body">
+                        <p class="simplealexa-footer__eyebrow">
+                            <?php
+                            /* translators: %s: plugin version number */
+                            printf( esc_html__( 'Version %s', 'simplealexa' ), esc_html( SIMPLEALEXA_VERSION ) );
+                            ?>
+                        </p>
+                        <h2 class="simplealexa-footer__title">Simple Alexa News Briefing</h2>
+                        <p class="simplealexa-footer__text"><?php esc_html_e( 'Turn your latest posts into an Alexa Flash Briefing feed via a REST endpoint.', 'simplealexa' ); ?></p>
+                        <p class="simplealexa-footer__text">
+                            <?php
+                            printf(
+                                /* translators: 1: link to the author's site, 2: link to the plugin repository */
+                                esc_html__( 'Made by %1$s. Source code on %2$s.', 'simplealexa' ),
+                                '<a href="https://gioxx.org" target="_blank" rel="noopener noreferrer">Gioxx</a>',
+                                '<a href="https://github.com/gioxx/wp-simplealexa" target="_blank" rel="noopener noreferrer">GitHub</a>'
+                            );
+                            ?>
+                        </p>
+                        <a class="button simplealexa-footer__action" href="https://github.com/gioxx/wp-simplealexa" target="_blank" rel="noopener noreferrer">
+                            <?php esc_html_e( 'View on GitHub', 'simplealexa' ); ?>
+                            <span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'simplealexa' ); ?></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="simplealexa-footer__card simplealexa-footer__card--gallery">
+                    <img class="simplealexa-footer__logo" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . 'assets/images/gioxx-plugins.svg' ); ?>" width="40" height="40" alt="">
+                    <div class="simplealexa-footer__body">
+                        <p class="simplealexa-footer__eyebrow">gioxx/WordPress</p>
+                        <h2 class="simplealexa-footer__title"><?php esc_html_e( 'Discover more plugins by Gioxx', 'simplealexa' ); ?></h2>
+                        <p class="simplealexa-footer__text"><?php esc_html_e( 'A curated collection of open-source plugins for security, analytics, performance and integrations.', 'simplealexa' ); ?></p>
+                        <a class="button simplealexa-footer__action" href="https://wordpress.gioxx.org/" target="_blank" rel="noopener noreferrer">
+                            <?php esc_html_e( 'Browse the plugins', 'simplealexa' ); ?>
+                            <span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'simplealexa' ); ?></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p class="description simplealexa-trademark-notice">
+                <?php esc_html_e( 'All trademarks mentioned are the property of their respective owners. Third-party trademarks, product names, trade names, corporate names and companies mentioned may be trademarks of their respective owners or registered trademarks of other companies and have been used for explanatory purposes only and for the benefit of the owner, without any intent to infringe existing copyright.', 'simplealexa' ); ?>
+            </p>
+        </div>
     </div>
     <?php
 }
+
+
+/**
+ * Load the admin stylesheet on the plugin's settings page only.
+ *
+ * @param string $hook Admin page hook suffix.
+ */
+function simplealexa_enqueue_admin_assets( $hook ) {
+    if ( 'settings_page_simplealexa' !== $hook ) {
+        return;
+    }
+    wp_enqueue_style( 'simplealexa-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.css', array(), SIMPLEALEXA_VERSION );
+}
+add_action( 'admin_enqueue_scripts', 'simplealexa_enqueue_admin_assets' );
+
+/**
+ * Links under the plugin description on the Plugins screen: the GitHub
+ * repository (unless the row already links to it) and the author's gallery.
+ *
+ * @param string[] $links Row meta links.
+ * @param string   $file  Plugin basename of the row.
+ * @return string[]
+ */
+function simplealexa_plugin_row_meta( $links, $file ) {
+    if ( plugin_basename( __FILE__ ) !== $file ) {
+        return $links;
+    }
+    if ( false === strpos( implode( ' ', (array) $links ), 'https://github.com/gioxx/wp-simplealexa' ) ) {
+        $links[] = '<a href="https://github.com/gioxx/wp-simplealexa" target="_blank" rel="noopener noreferrer">' . esc_html__( 'View on GitHub', 'simplealexa' ) . '</a>';
+    }
+    $links[] = '<a href="https://wordpress.gioxx.org/" target="_blank" rel="noopener noreferrer">' . esc_html__( 'More plugins by Gioxx', 'simplealexa' ) . '</a>';
+
+    return $links;
+}
+add_filter( 'plugin_row_meta', 'simplealexa_plugin_row_meta', 10, 2 );
 
 /**
  * Activation hook: clear rewrite rules if needed.
